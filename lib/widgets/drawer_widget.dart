@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
@@ -21,21 +20,28 @@ class DrawerWidget extends StatelessWidget {
               ),
             ),
           ),
-          InkWell(splashColor: Colors.green,
-          focusColor: Colors.pink,
-              child: ListTile(
-            title: Text('Hi this is google fonts'),
-            onTap: () {
-              Navigator.popAndPushNamed(context, 'google_fonts');
-            },
-          ),
+          InkWell(
+            splashColor: Colors.green,
+            focusColor: Colors.pink,
+            child: ListTile(
+              title: Text('Google Fonts'),
+              onTap: () {
+                Navigator.popAndPushNamed(context, '/google_fonts');
+              },
+            ),
           ),
           Divider(thickness: 1.0),
           ListTile(
-            title: Text('Hi this is test'),
+            title: Text('Google Maps'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/google_maps');
+            },
+          ),
+          Divider(thickness: 1.0),
+          ListTile(
+            title: Text('Home'),
             onTap: () {
               Navigator.pushReplacementNamed(context, '/');
-
             },
           ),
         ],

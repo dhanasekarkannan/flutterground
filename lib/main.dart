@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterground/screens/google_maps_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
@@ -12,12 +13,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       routes: {
-        '/' : (context) => MyHomePage( title: 'Home',),
-        'google_fonts' : (context) => GoogleFontsScreen(),
+        '/' : (BuildContext context) => MyHomePage( title: 'Home',),
+        '/google_fonts' : (BuildContext context) => GoogleFontsScreen(),
+        '/google_maps' : (BuildContext context) => GoogleMapsScreen(),
       },
     );
   }

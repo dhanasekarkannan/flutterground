@@ -3,7 +3,9 @@ import 'package:flutterground/widgets/drawer_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class GoogleFontsScreen extends StatelessWidget {
-  String _subtitle = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+  final String _subtitle = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
