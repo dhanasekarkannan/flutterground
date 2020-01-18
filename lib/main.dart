@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutterground/screens/google_maps_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
 import './widgets/drawer_widget.dart';
 import './screens/google_fonts_screen.dart';
+import './screens/forms_screen.dart';
+import './screens/google_maps_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,14 +14,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,  
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       routes: {
-        '/' : (BuildContext context) => MyHomePage( title: 'Home',),
-        '/google_fonts' : (BuildContext context) => GoogleFontsScreen(),
-        '/google_maps' : (BuildContext context) => GoogleMapsScreen(),
+        '/' : (ctx) => MyHomePage( title: 'Home',),
+        GoogleFontsScreen.routeName : (ctx) => GoogleFontsScreen(),
+        GoogleMapsScreen.routeName : (ctx) => GoogleMapsScreen(),
+        FormsScreen.routeName : (ctx) => FormsScreen(),
       },
     );
   }

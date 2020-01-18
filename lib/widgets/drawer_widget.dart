@@ -1,6 +1,10 @@
 
 import 'package:flutter/material.dart';
 
+import '../screens/google_fonts_screen.dart';
+import '../screens/forms_screen.dart';
+import '../screens/google_maps_screen.dart';
+
 class DrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -26,7 +30,7 @@ class DrawerWidget extends StatelessWidget {
             child: ListTile(
               title: Text('Google Fonts'),
               onTap: () {
-                Navigator.popAndPushNamed(context, '/google_fonts');
+                Navigator.popAndPushNamed(context, GoogleMapsScreen.routeName);
               },
             ),
           ),
@@ -39,9 +43,16 @@ class DrawerWidget extends StatelessWidget {
           ),
           Divider(thickness: 1.0),
           ListTile(
+            title: Text('Forms'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, FormsScreen.routeName);
+            },
+          ),
+          Divider(thickness: 1.0),
+          ListTile(
             title: Text('Home'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, '/');
+              Navigator.pushReplacementNamed(context, GoogleFontsScreen.routeName);
             },
           ),
         ],

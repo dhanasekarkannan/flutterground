@@ -7,6 +7,7 @@ import 'package:geolocator/geolocator.dart';
 import '../widgets/drawer_widget.dart';
 
 class GoogleMapsScreen extends StatefulWidget {
+  static const String routeName = '/google_maps';
   @override
   _GoogleMapsScreenState createState() => _GoogleMapsScreenState();
 }
