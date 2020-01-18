@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutterground/model/user.dart';
+import 'package:flutterground/providers/forms_provider.dart';
 
 import '../data/strings_data.dart';
-import '../model/validator_model.dart';
+import '../providers/validator_model.dart';
 import '../widgets/drawer_widget.dart';
 
 class FormsScreen extends StatelessWidget {
@@ -9,16 +12,19 @@ class FormsScreen extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
 
+  var _userDetail = UserDetail(
+      username: "", password: "", dob: "", mobileNo: "", emailId: "");
+
   final _passwordFocusNode = FocusNode();
   final _emailIDFocusNode = FocusNode();
   final _mobileNoFocusNode = FocusNode();
   final _dobFocusNode = FocusNode();
   final _usernameFocusNode = FocusNode();
 
-  void _saveFormInputs(){
-
+  void _saveFormInputs() {
     _formKey.currentState.validate();
-
+    _formKey.currentState.save();
+    FormsProvider().submitUserData(_userDetail);
   }
 
   @override
@@ -32,7 +38,6 @@ class FormsScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Form(
-            autovalidate: true,
             key: _formKey,
             child: Column(
               children: <Widget>[
@@ -40,6 +45,14 @@ class FormsScreen extends StatelessWidget {
                   decoration: InputDecoration(
                     labelText: StringsData.username,
                   ),
+                  onSaved: (value) {
+                    _userDetail = UserDetail(
+                        username: value,
+                        password: _userDetail.password,
+                        dob: _userDetail.dob,
+                        mobileNo: _userDetail.mobileNo,
+                        emailId: _userDetail.emailId);
+                  },
                   onFieldSubmitted: (_) {
                     FocusScope.of(context).requestFocus(_passwordFocusNode);
                   },
@@ -49,10 +62,21 @@ class FormsScreen extends StatelessWidget {
                 TextFormField(
                   decoration: InputDecoration(
                     labelText: StringsData.password,
+                    alignLabelWithHint: true,
                   ),
+                  obscureText: true,
+                  inputFormatters: [LengthLimitingTextInputFormatter(8)],
                   focusNode: _passwordFocusNode,
                   onFieldSubmitted: (_) {
                     FocusScope.of(context).requestFocus(_mobileNoFocusNode);
+                  },
+                  onSaved: (value) {
+                    _userDetail = UserDetail(
+                        username: _userDetail.username,
+                        password: value,
+                        dob: _userDetail.dob,
+                        mobileNo: _userDetail.mobileNo,
+                        emailId: _userDetail.emailId);
                   },
                   textInputAction: TextInputAction.next,
                 ),
@@ -61,8 +85,17 @@ class FormsScreen extends StatelessWidget {
                     labelText: StringsData.mobileNo,
                   ),
                   focusNode: _mobileNoFocusNode,
+                  keyboardType: TextInputType.phone,
                   onFieldSubmitted: (_) {
                     FocusScope.of(context).requestFocus(_emailIDFocusNode);
+                  },
+                  onSaved: (value) {
+                    _userDetail = UserDetail(
+                        username: _userDetail.username,
+                        password: _userDetail.password,
+                        dob: _userDetail.dob,
+                        mobileNo: value,
+                        emailId: _userDetail.emailId);
                   },
                   textInputAction: TextInputAction.next,
                 ),
@@ -71,8 +104,17 @@ class FormsScreen extends StatelessWidget {
                     labelText: StringsData.emailID,
                   ),
                   focusNode: _emailIDFocusNode,
+                  keyboardType: TextInputType.emailAddress,
                   onFieldSubmitted: (_) {
                     FocusScope.of(context).requestFocus(_dobFocusNode);
+                  },
+                  onSaved: (value) {
+                    _userDetail = UserDetail(
+                        username: _userDetail.username,
+                        password: _userDetail.password,
+                        dob: _userDetail.dob,
+                        mobileNo: _userDetail.mobileNo,
+                        emailId: value);
                   },
                   textInputAction: TextInputAction.next,
                   validator: (value) {
@@ -84,13 +126,24 @@ class FormsScreen extends StatelessWidget {
                     labelText: StringsData.dob,
                   ),
                   focusNode: _dobFocusNode,
+                  keyboardType: TextInputType.datetime,
                   textInputAction: TextInputAction.done,
-                  onFieldSubmitted: (_){_saveFormInputs();},
-
+                  onSaved: (value) {
+                    _userDetail = UserDetail(
+                        username: _userDetail.username,
+                        password: _userDetail.password,
+                        dob: value,
+                        mobileNo: _userDetail.mobileNo,
+                        emailId: _userDetail.emailId);
+                  },
+                  onFieldSubmitted: (_) {
+                    _saveFormInputs();
+                  },
                 ),
-
-                RaisedButton(child: Text("Save"),onPressed: _saveFormInputs,),
-
+                RaisedButton(
+                  child: Text("Save"),
+                  onPressed: _saveFormInputs,
+                ),
               ],
             ),
           ),

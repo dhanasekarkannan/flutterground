@@ -5,5 +5,8 @@ class StringsData {
   static const String reEnterPassword = "Re-enter Password"; 
   static const String emailID = "Email ID"; 
   static const String dob = "Date of Birth";
+
+  static const String firebaseURL = "https://flutterground.firebaseio.com/";
+  static const String userDB = firebaseURL + "userdetails.json";
   
 }
