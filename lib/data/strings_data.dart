@@ -6,6 +6,13 @@ class StringsData {
   static const String emailID = "Email ID"; 
   static const String dob = "Date of Birth";
 
+  // Alert messages
+  static const String alertSuccess = "Success";
+  static const String alertFailure = "Failed";
+  static const String userDataUploadSuccessMsg = "User Data uploaded successfully";
+  static const String raisedButtnOk = "OK";
+
+  //Firebase database
   static const String firebaseURL = "https://flutterground.firebaseio.com/";
   static const String userDB = firebaseURL + "userdetails.json";
   

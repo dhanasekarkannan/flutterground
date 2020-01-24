@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 
+import '../screens/image_picker_screen.dart';
 import '../screens/google_fonts_screen.dart';
 import '../screens/forms_screen.dart';
 import '../screens/google_maps_screen.dart';
@@ -30,7 +31,7 @@ class DrawerWidget extends StatelessWidget {
             child: ListTile(
               title: Text('Google Fonts'),
               onTap: () {
-                Navigator.popAndPushNamed(context, GoogleMapsScreen.routeName);
+                Navigator.popAndPushNamed(context, GoogleFontsScreen.routeName);
               },
             ),
           ),
@@ -38,7 +39,7 @@ class DrawerWidget extends StatelessWidget {
           ListTile(
             title: Text('Google Maps'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, '/google_maps');
+              Navigator.pushReplacementNamed(context, GoogleMapsScreen.routeName);
             },
           ),
           Divider(thickness: 1.0),
@@ -50,9 +51,16 @@ class DrawerWidget extends StatelessWidget {
           ),
           Divider(thickness: 1.0),
           ListTile(
+            title: Text('Image Picker'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, ImagePickerScreen.routeName);
+            },
+          ),
+          Divider(thickness: 1.0),
+          ListTile(
             title: Text('Home'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, GoogleFontsScreen.routeName);
+              Navigator.pushReplacementNamed(context, '/');
             },
           ),
         ],
