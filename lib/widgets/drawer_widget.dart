@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutterground/screens/tabbar_screen.dart';
 
 import '../screens/image_picker_screen.dart';
 import '../screens/google_fonts_screen.dart';
@@ -39,7 +40,8 @@ class DrawerWidget extends StatelessWidget {
           ListTile(
             title: Text('Google Maps'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, GoogleMapsScreen.routeName);
+              Navigator.pushReplacementNamed(
+                  context, GoogleMapsScreen.routeName);
             },
           ),
           Divider(thickness: 1.0),
@@ -53,7 +55,17 @@ class DrawerWidget extends StatelessWidget {
           ListTile(
             title: Text('Image Picker'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, ImagePickerScreen.routeName);
+              Navigator.pushReplacementNamed(
+                  context, ImagePickerScreen.routeName);
+            },
+          ),
+          Divider(
+            thickness: 1.0,
+          ),
+          ListTile(
+            title: Text('Tab'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, TabBarScreen.routname);
             },
           ),
           Divider(thickness: 1.0),

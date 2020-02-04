@@ -7,6 +7,7 @@ import './screens/google_fonts_screen.dart';
 import './screens/forms_screen.dart';
 import './screens/google_maps_screen.dart';
 import './screens/image_picker_screen.dart';
+import './screens/tabbar_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         GoogleMapsScreen.routeName : (ctx) => GoogleMapsScreen(),
         FormsScreen.routeName : (ctx) => FormsScreen(),
         ImagePickerScreen.routeName : (ctx) => ImagePickerScreen(),
+        TabBarScreen.routname : (ctx) => TabBarScreen(),
       },
     );
   }

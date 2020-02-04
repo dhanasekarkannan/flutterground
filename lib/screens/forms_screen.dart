@@ -74,9 +74,6 @@ class _FormsScreenState extends State<FormsScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
-
-    
 
     super.initState();
     initUserDetails();
