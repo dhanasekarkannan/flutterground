@@ -17,7 +17,7 @@ class FormsScreen extends StatefulWidget {
 class _FormsScreenState extends State<FormsScreen> {
   final _formKey = GlobalKey<FormState>();
   var _progress = false;
-
+  bool initCall = true;
   UserDetail  _userDetail;
 
   final _passwordFocusNode = FocusNode();
@@ -60,15 +60,16 @@ class _FormsScreenState extends State<FormsScreen> {
   void initUserDetails(){
     setState(() {
                                                 
-     _userDetail = UserDetail(
+    _userDetail = UserDetail(
     username: "",
     password: "",
     dob: "",
     mobileNo: "",
     emailId: "",
   );
-                        _formKey.currentState.reset();
-
+  if(!initCall)
+    _formKey.currentState.reset();
+  initCall = false ;
     });
   }
 

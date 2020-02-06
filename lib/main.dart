@@ -1,5 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 
 import './widgets/drawer_widget.dart';
@@ -8,26 +10,30 @@ import './screens/forms_screen.dart';
 import './screens/google_maps_screen.dart';
 import './screens/image_picker_screen.dart';
 import './screens/tabbar_screen.dart';
+import './providers/location_model.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,  
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return ChangeNotifierProvider(
+        create: (_) => LocationModel(),
+        child: MaterialApp(
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,  
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        routes: {
+          '/' : (ctx) => MyHomePage( title: 'Home',),
+          GoogleFontsScreen.routeName : (ctx) => GoogleFontsScreen(),
+          GoogleMapsScreen.routeName : (ctx) => GoogleMapsScreen(),
+          FormsScreen.routeName : (ctx) => FormsScreen(),
+          ImagePickerScreen.routeName : (ctx) => ImagePickerScreen(),
+          TabBarScreen.routname : (ctx) => TabBarScreen(),
+        },
       ),
-      routes: {
-        '/' : (ctx) => MyHomePage( title: 'Home',),
-        GoogleFontsScreen.routeName : (ctx) => GoogleFontsScreen(),
-        GoogleMapsScreen.routeName : (ctx) => GoogleMapsScreen(),
-        FormsScreen.routeName : (ctx) => FormsScreen(),
-        ImagePickerScreen.routeName : (ctx) => ImagePickerScreen(),
-        TabBarScreen.routname : (ctx) => TabBarScreen(),
-      },
     );
   }
 }
