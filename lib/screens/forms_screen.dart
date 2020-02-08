@@ -18,7 +18,7 @@ class _FormsScreenState extends State<FormsScreen> {
   final _formKey = GlobalKey<FormState>();
   var _progress = false;
   bool initCall = true;
-  UserDetail  _userDetail;
+  UserDetail _userDetail;
 
   final _passwordFocusNode = FocusNode();
 
@@ -43,33 +43,36 @@ class _FormsScreenState extends State<FormsScreen> {
         showDialog(
             context: context,
             builder: (ctx) => AlertDialog(
-                  title: Text(StringsData.alertSuccess,),
+                  title: Text(
+                    StringsData.alertSuccess,
+                  ),
                   content: Text(StringsData.userDataUploadSuccessMsg),
                   actions: <Widget>[
-                    RaisedButton(child: Text(StringsData.raisedButtnOk), onPressed: (){
-                      initUserDetails();
-                      Navigator.pop(context);
-
-                    },)
+                    RaisedButton(
+                      child: Text(StringsData.raisedButtnOk),
+                      onPressed: () {
+                        initUserDetails();
+                        Navigator.pop(context);
+                      },
+                    )
                   ],
                 ));
       });
     }
   }
 
-  void initUserDetails(){
+  void initUserDetails() {
     setState(() {
-                                                
-    _userDetail = UserDetail(
-    username: "",
-    password: "",
-    dob: "",
-    mobileNo: "",
-    emailId: "",
-  );
-  if(!initCall)
-    _formKey.currentState.reset();
-  initCall = false ;
+      _userDetail = UserDetail(
+        username: "",
+        password: "",
+        dob: "",
+        mobileNo: "",
+        emailId: "",
+      );
+      if (!initCall)
+       _formKey.currentState.reset();
+      initCall = false;
     });
   }
 
