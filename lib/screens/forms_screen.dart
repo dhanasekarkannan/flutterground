@@ -9,16 +9,18 @@ import '../widgets/drawer_widget.dart';
 
 class FormsScreen extends StatefulWidget {
   static const String routeName = "/forms_screen";
+  final _formKey = GlobalKey<FormState>();
+
 
   @override
   _FormsScreenState createState() => _FormsScreenState();
 }
 
 class _FormsScreenState extends State<FormsScreen> {
-  final _formKey = GlobalKey<FormState>();
+      UserDetail _userDetail;
+
   var _progress = false;
-  bool initCall = true;
-  UserDetail _userDetail;
+  bool _initCall = true;
 
   final _passwordFocusNode = FocusNode();
 
@@ -31,11 +33,11 @@ class _FormsScreenState extends State<FormsScreen> {
   final _usernameFocusNode = FocusNode();
 
   void _saveFormInputs() {
-    if (_formKey.currentState.validate()) {
+    if (widget._formKey.currentState.validate()) {
       setState(() {
         _progress = true;
       });
-      _formKey.currentState.save();
+      widget._formKey.currentState.save();
       FormsProvider().submitUserData(_userDetail).then((value) {
         setState(() {
           _progress = false;
@@ -52,7 +54,8 @@ class _FormsScreenState extends State<FormsScreen> {
                       child: Text(StringsData.raisedButtnOk),
                       onPressed: () {
                         initUserDetails();
-                        Navigator.pop(context);
+                        widget._formKey.currentState.reset();
+                        Navigator.pop(ctx);
                       },
                     )
                   ],
@@ -70,10 +73,11 @@ class _FormsScreenState extends State<FormsScreen> {
         mobileNo: "",
         emailId: "",
       );
-      if (!initCall)
-       _formKey.currentState.reset();
-      initCall = false;
+      
     });
+    // if (!_initCall)
+    //    widget._formKey.currentState.reset();
+      _initCall = false;
   }
 
   @override
@@ -97,7 +101,7 @@ class _FormsScreenState extends State<FormsScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Form(
-                  key: _formKey,
+                  key: widget._formKey,
                   child: Column(
                     children: <Widget>[
                       TextFormField(
@@ -211,6 +215,11 @@ class _FormsScreenState extends State<FormsScreen> {
                       RaisedButton(
                         child: Text("Save"),
                         onPressed: _saveFormInputs,
+                      ),RaisedButton(
+                        child: Text("Clear"),
+                        onPressed: (){
+                          widget._formKey.currentState.reset();
+                        },
                       ),
                     ],
                   ),
